@@ -1,0 +1,63 @@
+---
+title: 我一年来所积累的与学习有关的东西
+date: 2025-05-21T15:40:59+08:00
+slug: learning-notes
+categories:
+  - 学习
+tags:
+  - 计算机
+  - 学习方法
+---
+
+  ### 在大一快结束的此刻，我终于在周三的下午有时间做一些总结的工作，下面我会列出一些我收藏的平时用到或用不到的东西。
+从我浏览器的书签按时间顺序整理：
+1.[CSDIY](https://csdiy.wiki/)这个时候应该是我开始有了学习计算机的意识，之前一直都是跟着学校的课程，一个c的语法甚至能教一个学期，这个时候我也是开始觉醒了自学的意识。看过前言以后，我是从CS50这门课程开始看的，但是到后面一直也没有看完，有时候看着看着就睡着了...
+
+后面的cs61a我也没有看，这时候的我就是有一种眼高手低的感觉，没有任何行动的能力，并且我也在遭受着学校课程的折磨，比如小组作业之类。
+
+2.到了后面，有一次晚点名时，我们班突然有个oi✌出现了，并且宣布要建立一个共享的笔记之类资料的仓库，我那时感觉他特别牛逼（现在也是），后面我也抱着投机的想法去加入他们，但是我当时什么都不会，而此时他已经开始（或许早就开始）打算法比赛。关于算法，我之前也下定决心要学过，但这玩意对我来说似乎太难了qaq，没坚持下去，如今看着他拿到了陕西省icpc的省银，我也是万分感慨，同时也感慨自己的垃圾。
+
+他们的项目叫做“Horrible-Notes”,从群里的入门指导我了解到了git以及写文档要用markdown，并且还白嫖了破解的Typora,后面注册了个github就没有后续了，我甚至还没要到仓库的权限....，只能每天看着一群acmer，在群里吹水。
+[GitHub Desktop](https://docs.github.com/zh/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop)，
+[Markdown语法学习网站](https://markdown.com.cn/basic-syntax/)。
+
+3.后面在bilibili遇到了up主降星驰，看了他的视频我受益良多，但依旧没有开始学习，并且在上课摸鱼以及其他时间发现了很多优秀的计算机自学指导网站（大学生时间就是多）
+[计算机自学大致介绍](https://jowus72zrc.feishu.cn/wiki/NZibwdprwiWiZ0kV7Doc9dXinyh)，
+[0xFFFF社区](https://0xffff.one/)，
+[HIT自学组新人指引](https://jowus72zrc.feishu.cn/wiki/Khl9wKWO7iuKKpkTUEOcqRzvnVh)，
+[CS plan](https://cs-plan.com/)。
+还有国内一个特别厉害的老师jyy，以后可能会看他的OS课程[Yanyan`s wiki](https://jyywiki.cn/)。
+这时，也是我决定未来读研or就业的节点。
+这个是当时学算法的时候看的[OIwiki](https://oiwiki.org/).
+后面也看过Acwing的网课，感觉还不错。
+
+4.后面就放假了，当时我还延迟几天定了高铁票，想在西安转转，没想到在大唐不夜城倒在了一根**15块钱**的景区烤肠上。
+
+然后回家以后，我突然（真就突发奇想）想去搭建个个人博客，主要家里小孩都没放假，没人找我玩，闲的蛋疼，然后就有了blog.whikiss.cn。至于whikiss这个名字，我发现它在整个互联网都没有重复的，肥肠好用，就一直用了下去。
+博客从最开始的[Gmeek](https://blog.meekdai.com/post/Gmeek-kuai-su-shang-shou.html)到后来的Hexo，大概用了一周多吧，还专门花了点钱租了图床（因为不想自己部署了）。
+
+5.而后就是一些刷题网站（oj），有好多
+[导航](https://vjudge.net/)
+最常用的一般就是洛谷，杭电oj，leetcode(找工作推荐刷这个，上面的题单在面试时考的频率挺高的)。
+由于我是按时间顺序整理的，这里还会列出一些学习网站
+[TeachYourselfCS](https://www.learncs.site/)
+[菜鸟教程](https://www.runoob.com/?frm=msidevs.net&tg=%CB%F7oE)，这个太nb了，内容很丰富很友好，我一般会在忘了某个用法的时候看一看。
+[科研废物导航](https://yanweb.top/),写水课大作业的时候会用。
+
+6.过完春节以后，到开学之前，我开始了Java的学习，自此也正式决定了本科毕业工作的方向（牛牛网看多了导致的），我自己认为我是不适合去读研的。在开学之前把黑马的Java上看完了(有了c的基础看的很快)，把那个拼图小游戏写了出来，然后开学又把Java下看完了（当然是跳着看的）。
+至今，我已经把JavaSE，JavaWeb,外卖看完了，正在进行点评，但是现在期末考试快来了（啊啊啊啊啊啊啊啊啊啊啊啊），好难过。
+
+毕竟我跳过了计算机的教程（CS61A之类），直接开始学习了业务开发，导致基础不是很牢固，后面应该会补票，还有SSM，SQL也没有专门学习，后面打算写完点评开算法和八股，然后是数据库，暑假回xd早点。
+虽然我看到很多人大一已经开始投实习自己也很急急急，但简历上实在没什么写的，下去沉淀沉淀把。
+
+7.结尾，再贴一些乱七八糟的东西；
+[WebStack](https://webstack.cc/cn/index.html),
+[他人的经验1](https://blog.csdn.net/qq_37500516/article/details/135093182?sharetype=blog&amp),
+[他人的经验2](https://www.nowcoder.com/discuss/413273289076781056),
+牛客上还有很多这样的贴子，每当看他们的时候就感觉有人在与我并肩作战：D。
+[Hello算法](https://www.hello-algo.com/)。
+以及最后，我发现的一个下gal的网站[GGS](https://gal.saop.cc/)。
+一些他人的博客：
+[王帅真-个人博客](https://blog.qizong007.top/)，
+[長門有希](https://blog.yuki-nagato.com/zh-cn/)，
+[星合の空](https://wu-kan.cn/)这个是当时研究搭建博客的时候发现的。

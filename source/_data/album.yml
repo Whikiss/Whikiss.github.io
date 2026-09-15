@@ -1,0 +1,26 @@
+- class_name: 天空与世界
+  path_name: /everyScenery
+  type: 2
+  description: 美好的每一天～不连续的存在～
+  cover: https://bu.dusays.com/2025/01/24/679375fd71f04.png
+  top_background: https://bu.dusays.com/2025/01/24/679375fd71f04.png
+  rowHeight: 220
+  limit: 10
+  lazyload: true
+  btnLazyload: false
+  url: false
+  top_link: /album
+  top_btn_text: 返回
+  album_list:
+
+
+- class_name: 我的日常
+  path_name: /dailyPhoto
+  type: 1
+  description: 日常
+  top_link: /album
+  top_btn_text: 返回
+  top_background: https://bu.dusays.com/2025/01/24/6793760085e02.png
+  cover: https://bu.dusays.com/2025/01/24/6793760085e02.png
+  album_list:
+    

@@ -1,0 +1,13 @@
+- title: 即刻短文
+  subTitle: 日常
+  tips: 随时随地，分享生活
+  buttonText: 关于我
+  buttonLink: /about/
+  limit: 30
+  home_essay: true
+  top_background: https://bu.dusays.com/2025/01/24/6793551276cd4.png
+  essay_list:
+    - content: 哈哈哈，终于弄完了
+      date: 2025/01/24
+    - content: 火影忍者是世界上最良心的游戏
+      date: 2025/1/24

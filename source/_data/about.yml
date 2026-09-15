@@ -1,0 +1,89 @@
+- class_name: 关于页
+  subtitle: 一即是全，全即是一
+  avatarImg: https://bu.dusays.com/2025/01/23/679267769d2a5.jpg
+  name: Whikiss
+  description: 是一名学生:)
+  aboutsiteTips:
+    tips: 追求
+    title1: 源于
+    title2: 热爱而去 感受
+    word:
+      - 学习
+      - 生活
+      - 体验
+  helloAbout: Hello World!
+  skillsTips:
+    tips: 技能
+    title: 
+  careers:
+    tips: 生涯
+    title: 沧海一粟
+    list:
+      - desc: XDU,计算机类
+        color: "#357ef5"
+  
+    img: 
+  statistic:
+    link: /archives
+    text: 文章隧道
+    cover: https://bu.dusays.com/2023/05/01/644f4b037b930.jpg
+  map:
+    title: 我现在住在
+    StrengthenTitle: 中国，西安市
+    background: https://bu.dusays.com/2025/01/24/67931ad2c4e5d.png
+    backgroundDark: https://bu.dusays.com/2025/01/24/67931ad2c4e5d.png
+  selfInfo:
+    selfInfoTips1: 生于
+    selfInfoContentYear: 2007
+    selfInfoTips2: 西安电子科技大学
+    selfInfoContent2: 计算机类
+    selfInfoTips3: 现在职业
+    selfInfoContent3: 大一学生👨‍🎓
+  personalities:
+    author_name: 物流师
+    personality_type: ISTJ
+    photo_url: https://bu.dusays.com/2025/01/25/679498d2174ae.png
+    personality_img: https://bu.dusays.com/2025/01/24/67932a18a14cf.png
+    name_url: https://www.16personalities.com/ch/istj-%E4%BA%BA%E6%A0%BC
+  maxim:
+    maxim_tips: 
+    maxim_top: 一即是全，
+    maxim_bottom: 全即是一。
+  buff:
+    buff_tips: 特长
+    buff_top: 躺平了
+    buff_bottom: 二次元指数 MAX
+  game:
+    game_tips: 爱好游戏
+    game_title: Terraria
+    game_uid: " "
+    game_bg: https://bu.dusays.com/2025/01/24/679324d10e1b4.png
+  comic:
+    comic_tips: 爱好番剧
+    comic_title: 追番
+    comic_list:
+      - name: 约定的梦幻岛
+        href: https://www.bilibili.com/bangumi/media/md5267750/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://bu.dusays.com/2023/05/27/647166c44b414.webp
+      - name: 咒术回战
+        href: https://www.bilibili.com/bangumi/media/md28229899/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://bu.dusays.com/2023/05/24/646db4398832e.webp
+      - name: 紫罗兰永恒花园
+        href: https://www.bilibili.com/bangumi/media/md8892/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://bu.dusays.com/2023/05/24/646db43983d99.webp
+      - name: 鬼灭之刃
+        href: https://www.bilibili.com/bangumi/media/md22718131/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://bu.dusays.com/2023/05/24/646db439856a0.webp
+      - name: JOJO的奇妙冒险 黄金之风
+        href: https://www.bilibili.com/bangumi/media/md135652/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://bu.dusays.com/2023/05/30/64760e38d651a.webp
+  like:
+    like_tips: 
+    like_title: 
+    like_bg: https://bu.dusays.com/2025/01/25/679494de4cd8e.png
+    like_bottom: 
+  music:
+    music_tips: 音乐偏好
+    music_title: 许嵩、陶喆、民谣、华语流行
+    music_bg: https://bu.dusays.com/2025/01/25/67949579c0776.jpeg
+    music_link: https://whikiss.github.io/music/?id=7631086153&server=tencent
