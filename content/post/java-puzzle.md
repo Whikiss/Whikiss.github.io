@@ -3,6 +3,8 @@ title: java小游戏
 date: 2025-01-24T22:21:07+08:00
 lastmod: 2025-01-24T23:45:59+08:00
 slug: java-puzzle
+aliases:
+  - /2025/01/24/java小游戏/
 categories:
   - 编程
 tags:

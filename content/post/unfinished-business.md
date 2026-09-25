@@ -2,6 +2,8 @@
 title: 未竟之事
 date: 2025-03-30T22:13:07+08:00
 slug: unfinished-business
+aliases:
+  - /2025/03/30/未竟之事/
 categories:
   - 随笔
 tags:

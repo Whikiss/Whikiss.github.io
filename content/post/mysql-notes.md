@@ -3,6 +3,8 @@ title: 《MySQL必知必会》总结
 date: 2025-09-22T20:24:27+08:00
 lastmod: 2025-09-22T21:32:51+08:00
 slug: mysql-notes
+aliases:
+  - /2025/09/22/《MySQL必知必会》总结/
 categories:
   - 编程
 tags:

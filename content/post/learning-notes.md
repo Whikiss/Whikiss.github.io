@@ -2,6 +2,8 @@
 title: 我一年来所积累的与学习有关的东西
 date: 2025-05-21T15:40:59+08:00
 slug: learning-notes
+aliases:
+  - /2025/05/21/我一年来所积累的与学习有关的东西/
 categories:
   - 学习
 tags:

@@ -3,6 +3,8 @@ title: 如何在本地部署Deepseek
 date: 2025-01-28T14:48:57+08:00
 lastmod: 2025-01-29T01:39:56+08:00
 slug: deepseek-local
+aliases:
+  - /2025/01/28/如何在本地部署Deepseek/
 categories:
   - 人工智能
 tags:
