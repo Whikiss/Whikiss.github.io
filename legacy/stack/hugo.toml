@@ -1,0 +1,87 @@
+baseURL = "https://blog.whikiss.cn/"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh"
+title = "Whikiss"
+theme = "hugo-theme-stack"
+timeZone = "Asia/Shanghai"
+hasCJKLanguage = true
+[pagination]
+pagerSize = 3
+
+[permalinks]
+post = "/posts/:slug/"
+page = "/:slug/"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+[params]
+mainSections = ["post"]
+rssFullContent = true
+favicon = "img/avatar.svg"
+
+[params.footer]
+since = 2025
+customText = "始于 2025 年 1 月 24 日"
+
+[params.sidebar]
+compact = false
+emoji = "✍️"
+avatar = "img/avatar.svg"
+subtitle = "记录学习、生活与仍在进行的尝试"
+
+[params.article]
+headingAnchor = false
+math = false
+toc = true
+readingTime = true
+
+[params.article.list]
+showTags = false
+
+[params.article.license]
+enabled = false
+
+[params.widgets]
+homepage = [
+    { type = "search" },
+    { type = "archives", params = { limit = 5 } },
+    { type = "categories", params = { limit = 10 } },
+    { type = "tag-cloud", params = { limit = 10 } },
+]
+page = [
+    { type = "toc" },
+]
+
+[params.colorScheme]
+toggle = true
+default = "auto"
+
+[caches]
+    [caches.images]
+    dir = ":cacheDir/images"
+
+[params.comments]
+enabled = false
+
+[params.cookies]
+enabled = false
+
+[[menu.main]]
+identifier = "home"
+name = "首页"
+url = "/"
+weight = -100
+
+    [menu.main.params]
+    icon = "home"
+
+[[menu.social]]
+identifier = "github"
+name = "GitHub"
+url = "https://github.com/Whikiss"
+
+    [menu.social.params]
+    icon = "brand-github"
+    newTab = true

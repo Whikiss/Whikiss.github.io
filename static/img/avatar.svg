@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" role="img" aria-label="Whikiss avatar">
+  <rect width="150" height="150" rx="36" fill="#25364d"/>
+  <rect x="35" y="29" width="72" height="92" rx="8" fill="#f7f2e8"/>
+  <path d="M47 47h48M47 62h48M47 77h34" fill="none" stroke="#8aa6a3" stroke-linecap="round" stroke-width="7"/>
+  <path d="m88 105 26-26 12 12-26 26-16 5z" fill="#e46f61"/>
+  <path d="m114 79 6-6 12 12-6 6z" fill="#f4c95d"/>
+  <path d="m88 105-4 17 16-5z" fill="#25364d"/>
+</svg>

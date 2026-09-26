@@ -1,6 +1,6 @@
 # Whikiss 的博客
 
-使用 Hugo Extended 0.157.0 与 Stack 主题，发布到 https://blog.whikiss.cn/ 。
+使用 Hugo Extended 0.157.0 与 AIOVTUE 主题，发布到 https://blog.whikiss.cn/ 。
 
 ## 本地预览
 
@@ -10,8 +10,8 @@
 
 ## 写文章
 
-文章位于 `content/post/`，独立页面位于 `content/page/`。
-新建文章运行 `hugo new content post/文章标识.md`，发布前将 `draft` 改为 `false`。
+文章位于 `content/posts/`，独立页面位于 `content/page/`。
+新建文章运行 `hugo new content posts/文章标识.md`，发布前将 `draft` 改为 `false`。
 文章地址为 `/posts/slug/`，迁移文章保留旧 Hexo 地址跳转。图床链接保持原样。
 
 ## 构建与发布
@@ -26,9 +26,15 @@
 - `hugo.toml`、`config/`：站点配置。
 - `content/`：文章与页面。
 - `layouts/`：主题模板覆盖。
-- `themes/hugo-theme-stack/`：主题源码。
+- `themes/aiovtue/`：主题源码。
 - `assets/`、`static/`：资源和原样发布的文件。
 - `legacy/hexo/`：原 Hexo 源码归档，不参与当前构建。
 - `public/`、`public-hugo/`、`resources/_gen/`：生成文件。
 
 旧 Hexo 依赖、缓存和部署目录不再用于发布，请勿使用旧 Hexo 部署命令。
+
+## 主题来源
+
+使用 [AIOVTUE](https://github.com/AIOVTUE/hugo-theme-aiovtue) 主题，版本记录在 `themes/aiovtue/UPSTREAM.md`。
+首页背景位于 `static/hero/`，个人信息与菜单在 `hugo.toml`，链接列表在 `data/links.yaml`。
+旧 Stack 配置和模板保存在 `legacy/stack/`。

@@ -1,4 +1,5 @@
 ---
+layout: links
 title: "链接"
 url: "/links/"
 menu:

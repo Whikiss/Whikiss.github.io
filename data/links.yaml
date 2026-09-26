@@ -1,0 +1,17 @@
+title: 学习与交流
+shuffleGroups: false
+linkGroups:
+  - name: 常用链接
+    links:
+      - name: GitHub
+        url: https://github.com/Whikiss
+        avatar: /img/avatar.svg
+        desc: 我的代码仓库和公开项目
+      - name: CSDIY
+        url: https://csdiy.wiki/
+        avatar: /img/avatar.svg
+        desc: 计算机科学自学指南与课程资源
+      - name: 0xFFFF
+        url: https://0xffff.one/
+        avatar: /img/avatar.svg
+        desc: 面向计算机学习者的社区

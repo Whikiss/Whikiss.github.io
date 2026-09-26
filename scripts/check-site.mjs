@@ -10,8 +10,8 @@ for (const page of ['index.html','404.html','about/index.html','archives/index.h
 assert.equal(read('CNAME').trim(), 'blog.whikiss.cn');
 const search = JSON.parse(read('search/index.json'));
 assert.ok(Array.isArray(search) && search.length >= 5, 'Search index is incomplete');
-for (const file of readdirSync('content/post').filter(x => x.endsWith('.md'))) {
-  const source = readFileSync(join('content/post',file), 'utf8');
+for (const file of readdirSync('content/posts').filter(x => x.endsWith('.md'))) {
+  const source = readFileSync(join('content/posts',file), 'utf8');
   const slug = source.match(/^slug: (.+)$/m)[1].trim();
   const alias = source.match(/^aliases:\r?\n  - (.+)$/m)[1].trim();
   assert.ok(read(`posts/${slug}/index.html`).includes(`https://blog.whikiss.cn/posts/${slug}/`), `Missing canonical: ${slug}`);

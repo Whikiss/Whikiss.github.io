@@ -1,87 +1,116 @@
-baseURL = "https://blog.whikiss.cn/"
-languageCode = "zh-CN"
-defaultContentLanguage = "zh"
-title = "Whikiss"
-theme = "hugo-theme-stack"
-timeZone = "Asia/Shanghai"
+baseURL = 'https://blog.whikiss.cn/'
+languageCode = 'zh-CN'
+defaultContentLanguage = 'zh'
+title = 'Whikiss'
+theme = 'aiovtue'
+timeZone = 'Asia/Shanghai'
 hasCJKLanguage = true
+enableRobotsTXT = true
 [pagination]
-pagerSize = 3
-
+pagerSize = 6
 [permalinks]
-post = "/posts/:slug/"
-page = "/:slug/"
-
+posts = '/posts/:slug/'
 [taxonomies]
-category = "categories"
-tag = "tags"
-
+category = 'categories'
+tag = 'tags'
+[outputs]
+home = ['HTML', 'RSS']
+section = ['HTML', 'RSS']
 [params]
-mainSections = ["post"]
-rssFullContent = true
-favicon = "img/avatar.svg"
-
+description = '记录学习、生活与仍在进行的尝试'
+subtitle = '人啊，幸福地活下去吧！'
+primaryColor = '#DF9193'
+favicon = '/img/avatar.svg'
+defaultCover = '/hero/tt3.png'
+math = false
+postIndent = false
+[params.author]
+name = 'Whikiss'
+avatar = '/img/avatar.svg'
+statusEmoji = '✍️'
+statusMessage = '记录学习与生活'
+[params.hero]
+title = 'Whikiss'
+motto = ['人啊，幸福地活下去吧！', '记录学习、生活与仍在进行的尝试']
+style = 'dot'
+urls = ['/hero/tt3.png', '/hero/hero-1.jpg']
+enableHitokoto = false
+typewriter = true
+randomUrls = false
+fixedImg = true
+[params.home]
+layout = 'list'
+layoutRandom = false
+desktopListColumns = 'single'
+desktopListItemStyle = 'cards'
+mobileCardsLayout = 'list'
+mobileCardsBatchSize = 6
 [params.footer]
 since = 2025
-customText = "始于 2025 年 1 月 24 日"
-
-[params.sidebar]
-compact = false
-emoji = "✍️"
-avatar = "img/avatar.svg"
-subtitle = "记录学习、生活与仍在进行的尝试"
-
-[params.article]
-headingAnchor = false
-math = false
-toc = true
-readingTime = true
-
-[params.article.list]
-showTags = false
-
-[params.article.license]
-enabled = false
-
-[params.widgets]
-homepage = [
-    { type = "search" },
-    { type = "archives", params = { limit = 5 } },
-    { type = "categories", params = { limit = 10 } },
-    { type = "tag-cloud", params = { limit = 10 } },
-]
-page = [
-    { type = "toc" },
-]
-
-[params.colorScheme]
-toggle = true
-default = "auto"
-
-[caches]
-    [caches.images]
-    dir = ":cacheDir/images"
-
-[params.comments]
-enabled = false
-
-[params.cookies]
-enabled = false
-
-[[menu.main]]
-identifier = "home"
-name = "首页"
-url = "/"
-weight = -100
-
-    [menu.main.params]
-    icon = "home"
-
-[[menu.social]]
-identifier = "github"
-name = "GitHub"
-url = "https://github.com/Whikiss"
-
-    [menu.social.params]
-    icon = "brand-github"
-    newTab = true
+runtimeSince = '2025-01-24'
+[params.navbar]
+titleParts = ['Whikiss']
+subTitle = '记录学习与生活'
+[params.search]
+enable = true
+threshold = 0.35
+[params.links]
+layout = 'simple'
+rssEnable = false
+footerEnable = false
+[params.charts]
+archivesStartMonth = '2025-01'
+tagsChartLength = 10
+[params.sponsor]
+enable = false
+[params.license]
+enable = false
+[params.music]
+enable = false
+[params.live2d]
+enable = false
+[params.mouse]
+enable = false
+[params.effects]
+enable = false
+[params.bangumi]
+enable = false
+[params.signature]
+postCopyrightEnable = false
+footerEnable = false
+[params.pjax]
+enable = false
+[[params.social]]
+name = 'GitHub'
+link = 'https://github.com/Whikiss'
+icon = 'ri:github-fill'
+[[params.menu.main]]
+name = '首页'
+url = '/'
+icon = 'ant-design:home-filled'
+weight = 1
+[[params.menu.main]]
+name = '归档'
+url = '/archives/'
+icon = 'ant-design:container-filled'
+weight = 2
+[[params.menu.main]]
+name = '分类'
+url = '/categories/'
+icon = 'ant-design:appstore-filled'
+weight = 3
+[[params.menu.main]]
+name = '标签'
+url = '/tags/'
+icon = 'ant-design:tags-filled'
+weight = 4
+[[params.menu.main]]
+name = '链接'
+url = '/links/'
+icon = 'ant-design:global-outlined'
+weight = 5
+[[params.menu.main]]
+name = '关于'
+url = '/about/'
+icon = 'ant-design:user-outlined'
+weight = 6
