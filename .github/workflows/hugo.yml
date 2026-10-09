@@ -48,7 +48,7 @@ jobs:
         run: hugo --gc --minify --cleanDestinationDir
 
       - name: Set up Node for output validation
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
 
