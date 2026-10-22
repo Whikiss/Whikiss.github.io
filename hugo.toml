@@ -114,3 +114,9 @@ name = '关于'
 url = '/about/'
 icon = 'ant-design:user-outlined'
 weight = 6
+
+[[params.menu.main]]
+name = '面试备战'
+url = '/tools/interview/'
+icon = 'ant-design:read-filled'
+weight = 7
