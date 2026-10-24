@@ -21,7 +21,7 @@ description = '记录学习、生活与仍在进行的尝试'
 subtitle = '人啊，幸福地活下去吧！'
 primaryColor = '#DF9193'
 favicon = '/img/avatar.svg'
-defaultCover = '/hero/tt3.png'
+defaultCover = '/img/default-cover.png'
 math = false
 postIndent = false
 [params.author]
