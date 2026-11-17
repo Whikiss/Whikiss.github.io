@@ -11,7 +11,7 @@
    各板块样式已作用域化到 [data-sec="X"]，互不干扰
    ============================================================ */
 :root{
-  --rail-w:150px;
+  --rail-h:56px;
   --rail-bg:#141a22;
   --rail-fg:#8b97a8;
   --rail-fg-on:#ffffff;
@@ -27,37 +27,35 @@ body{
 }
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
-/* ---------------- 一级导航（左侧竖条） ---------------- */
+/* ---------------- 一级导航（桌面顶部横条 / 移动底部标签栏） ---------------- */
 #rail{
-  position:fixed;left:0;top:0;bottom:0;width:var(--rail-w);z-index:200;
-  background:var(--rail-bg);display:flex;flex-direction:column;
-  border-right:1px solid rgba(255,255,255,.07);
+  position:fixed;left:0;right:0;top:0;height:var(--rail-h);z-index:200;
+  background:var(--rail-bg);display:flex;flex-direction:row;align-items:stretch;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 .rail-head{
-  padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:8px;padding:0 20px;
+  border-right:1px solid rgba(255,255,255,.07);
 }
 .rail-head b{
-  display:block;font-family:var(--serif);font-size:17px;font-weight:700;color:#f2f4f7;
-  letter-spacing:.01em;line-height:1.3;
+  font-family:var(--serif);font-size:15px;font-weight:700;color:#f2f4f7;
+  letter-spacing:.01em;line-height:1.2;
 }
 .rail-head b em{font-style:normal;color:var(--rail-accent,#e0766a)}
-.rail-head span{
-  display:block;font-size:9.5px;color:#5a6577;letter-spacing:.16em;
-  text-transform:uppercase;margin-top:6px;
-}
-.rail-nav{flex:1;padding:12px 0}
+.rail-head span{display:none}
+.rail-nav{display:flex;flex:1;padding:0;height:100%}
 .rail-btn{
-  width:100%;display:block;text-align:left;padding:12px 16px;
-  border-left:3px solid transparent;transition:all .15s;
+  display:flex;align-items:center;gap:6px;padding:0 16px;
+  border-left:none;border-bottom:3px solid transparent;transition:all .15s;
 }
 .rail-btn:hover{background:rgba(255,255,255,.05)}
 .rail-btn .rn{
-  display:block;font-size:13.5px;font-weight:600;color:var(--rail-fg);transition:color .15s;
-  letter-spacing:.01em;
+  font-size:13px;font-weight:600;color:var(--rail-fg);transition:color .15s;
+  letter-spacing:.01em;white-space:nowrap;
 }
 .rail-btn .rd{
-  display:block;font-size:10px;color:#4d5768;margin-top:3px;
-  font-family:var(--mono);letter-spacing:.02em;
+  font-size:10px;color:#4d5768;font-family:var(--mono);letter-spacing:.02em;
+  white-space:nowrap;
 }
 .rail-btn:hover .rn{color:#d6dbe3}
 body[data-sec="algo"]  .rail-btn[data-go="algo"],
@@ -65,8 +63,8 @@ body[data-sec="kaoda"] .rail-btn[data-go="kaoda"],
 body[data-sec="iv"]    .rail-btn[data-go="iv"],
 body[data-sec="bagu"]  .rail-btn[data-go="bagu"],
 body[data-sec="shousi"] .rail-btn[data-go="shousi"]{
-  background:linear-gradient(90deg,rgba(255,255,255,.08),transparent);
-  border-left-color:var(--rail-accent,#e0766a);
+  background:linear-gradient(180deg,rgba(255,255,255,.08),transparent);
+  border-bottom-color:var(--rail-accent,#e0766a);
 }
 body[data-sec="algo"]  .rail-btn[data-go="algo"]  .rn,
 body[data-sec="kaoda"] .rail-btn[data-go="kaoda"] .rn,
@@ -79,13 +77,36 @@ body[data-sec="iv"]    .rail-btn[data-go="iv"]    .rd,
 body[data-sec="bagu"]  .rail-btn[data-go="bagu"]  .rd,
 body[data-sec="shousi"] .rail-btn[data-go="shousi"] .rd{color:var(--rail-accent,#e0766a)}
 
-.rail-foot{
-  padding:12px 16px 16px;border-top:1px solid rgba(255,255,255,.07);
-  font-size:10px;color:#4a5464;line-height:1.6;font-family:var(--mono);
+.rail-foot{display:none}
+
+/* 移动端抽屉遮罩 */
+#scrim{
+  position:fixed;inset:0;z-index:150;background:rgba(8,12,18,.55);
+  display:none;
+}
+body.drawer-open #scrim{display:block}
+body.drawer-open{overflow:hidden}
+body.drawer-open .pane:not([hidden]) main{overflow:hidden}
+
+/* 八股/面试口述稿高亮：每题第一段 blockquote 就是「面试直接说」 */
+.pane .item .body > blockquote:first-of-type{
+  background:rgba(43,79,122,.06);
+  border-left:3px solid #2b4f7a;
+  border-radius:0 8px 8px 0;
+  padding:14px 18px;
+  margin:10px 0 16px;
+}
+
+/* 板块页签：桌面允许换行，窄屏横向滚动 */
+.pane .tabs{flex-wrap:wrap}
+@media(max-width:1040px){
+  .pane .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pane .tabs::-webkit-scrollbar{display:none}
+  .pane .tabs button{flex:0 0 auto}
 }
 
 /* ---------------- 板块容器 ---------------- */
-#stage{position:fixed;inset:0 0 0 var(--rail-w);overflow:hidden}
+#stage{position:fixed;inset:var(--rail-h) 0 0 0;overflow:hidden}
 .pane{position:absolute;inset:0;overflow:hidden}
 .pane[hidden]{display:none}
 .root{position:absolute;inset:0;overflow:hidden}
@@ -115,10 +136,10 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
    5 个板块正好适合底部导航；内容区拿回整屏宽度
    ============================================================ */
 @media(max-width:900px){
-  :root{--rail-w:0px;--tabbar-h:56px}
+  :root{--rail-h:0px;--tabbar-h:56px}
 
   #rail{
-    top:auto;bottom:0;left:0;right:0;width:100%;
+    top:auto;bottom:0;left:0;right:0;width:100%;height:var(--tabbar-h);
     flex-direction:row;align-items:stretch;
     border-right:none;border-top:1px solid rgba(255,255,255,.10);
     padding-bottom:env(safe-area-inset-bottom,0px);
@@ -134,12 +155,12 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
     flex:1 1 0;min-width:0;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:2px;
     padding:0 2px;border-left:none;border-top:2px solid transparent;
-    background:none;text-align:center;
+    border-bottom:none;background:none;text-align:center;
   }
   .rail-btn:hover{background:none}
   .rail-btn:active{background:rgba(255,255,255,.06)}
   .rail-btn .rn{
-    display:block;font-size:11.5px;font-weight:600;line-height:1.2;
+    display:block;font-size:12px;font-weight:600;line-height:1.2;
     letter-spacing:0;white-space:nowrap;color:#79859a;
   }
   .rail-btn .rd{display:none}
@@ -163,8 +184,20 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
   body[data-sec="bagu"]   .rail-btn[data-go="bagu"]   .rn,
   body[data-sec="shousi"] .rail-btn[data-go="shousi"] .rn{color:#fff;font-weight:700}
 
-  /* 内容区：占满宽度，底部让出标签栏 */
-  #stage{inset:0 0 calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px)) 0}
+  /* 抽屉层级：scrim(150) < 板块侧栏(160) < 菜单按钮(170) */
+  .pane aside{z-index:160}
+  .pane .menu-btn{z-index:170;top:calc(12px + env(safe-area-inset-top,0px))}
+
+  /* 内容区：占满宽度，底部让出标签栏，顶部让出安全区 */
+  #stage{inset:env(safe-area-inset-top,0px) 0 calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px)) 0}
+
+  /* 手机端可读性：正文 15px / 1.78，输入框 16px 防 iOS 缩放，列表项最小点击高度 44px */
+  .pane p, .pane li{font-size:15px;line-height:1.78}
+  .pane pre{font-size:13px;line-height:1.65}
+  .pane table{font-size:13.5px}
+  .pane input, .pane select, .pane textarea{font-size:16px}
+  .pane .qs a, .pane .qlist a, .pane .nav a{min-height:44px;box-sizing:border-box}
+  .pane .item>summary, .pane .qa>summary{min-height:44px;box-sizing:border-box}
 }
 
 /* 更窄的机型（iPhone SE 一类）：字号再收一档 */
@@ -1505,6 +1538,8 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
   <div class="rail-foot">5 个板块<br>离线可用</div>
 </nav>
 
+<div id="scrim"></div>
+
 <div id="stage">
 
   <!-- ==================== 板块一：算法题解 ==================== -->
@@ -1535,7 +1570,7 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
 </div>
 
 <script id="__STAT__">
-window.__STAT__ = {"algo":124,"kaoda":74,"iv":99,"bagu":202,"shousi":40};
+window.__STAT__ = {"algo":124,"kaoda":80,"iv":114,"bagu":299,"shousi":40};
 window.__LAZY__ = true;
 /* 题量统计（外壳标签用） */
 </script>
@@ -1614,8 +1649,37 @@ window.__RENDER_ALGO__ = function (root, DATA) {
   /* ---------------- 语法高亮 ---------------- */
   const GO_KW = /\b(package|import|func|var|const|type|struct|interface|map|chan|go|defer|return|if|else|for|range|switch|case|default|break|continue|select|nil|true|false|make|new|append|len|cap|copy|delete|string|int|int64|float64|bool|byte|rune|error|any)\b/g;
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  /* teach.mjs 里的代码已经是 HTML 转义过的（&lt; / &amp;&amp;），
+     直接再 esc 会变成 &amp;lt;，页面上显示字面量。先解码再转义。 */
+  function decodeHtml(s) {
+    return String(s)
+      .replace(/&amp;lt;/g, '<')
+      .replace(/&amp;gt;/g, '>')
+      .replace(/&amp;quot;/g, '"')
+      .replace(/&amp;#39;/g, "'")
+      .replace(/&amp;#x27;/g, "'")
+      .replace(/&amp;amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&#x27;/g, "'")
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&');
+  }
+  /* 教学 HTML 里有些内联 <code> 是双重转义的（&amp;lt;），
+     插入前降一层，交给浏览器正常显示 <。 */
+  function normalizeTeachingHtml(s) {
+    return String(s)
+      .replace(/&amp;lt;/g, '&lt;')
+      .replace(/&amp;gt;/g, '&gt;')
+      .replace(/&amp;quot;/g, '&quot;')
+      .replace(/&amp;#39;/g, '&#39;')
+      .replace(/&amp;#x27;/g, '&#x27;')
+      .replace(/&amp;amp;/g, '&amp;');
+  }
   function hlGo(src) {
-    let s = esc(src);
+    let s = esc(decodeHtml(src));
     const slots = [];
     const keep = (html) => { slots.push(html); return `\u0000PH${'x'.repeat(slots.length)}\u0000`; };
     s = s.replace(/\/\/[^\n]*/g, (m) => keep(`<span class="hl-com">${m}</span>`));
@@ -1810,23 +1874,29 @@ window.__RENDER_ALGO__ = function (root, DATA) {
     });
   }
 
+  /* 小节标题来自 Markdown 的 ### 行，里面常带 `代码` 反引号；
+     先转义再把反引号换成 <code>，避免标题里露出裸反引号。 */
+  function titleInline(s) {
+    return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+
   function teachBlock(t) {
     const secLabel = { '①': '识别信号', '②': '思路推导', '③': '图解', '④': '代码', '⑤': '为什么这样对', '⑥': '易错点', '⑦': '复杂度', '⑧': '举一反三' };
     const parts = [];
     if (t.groupIntro) {
       parts.push(`<details class="teach-fold grp-intro">
-        <summary class="fold">▸ ${t.groupIntro.title}</summary>
-        <div class="teach-body">${t.groupIntro.html}</div>
+        <summary class="fold">▸ ${titleInline(t.groupIntro.title)}</summary>
+        <div class="teach-body">${normalizeTeachingHtml(t.groupIntro.html)}</div>
       </details>`);
     }
-    if (t.opening) parts.push(`<div class="teach-open">${t.opening}</div>`);
+    if (t.opening) parts.push(`<div class="teach-open">${normalizeTeachingHtml(t.opening)}</div>`);
     for (const s of t.sections) {
       const known = secLabel[s.marker];
       const open = s.marker === '①' ? ' open' : '';
-      const title = `${s.marker} ${s.name || known || ''}`;
+      const title = `${s.marker} ${titleInline(s.name || known || '')}`;
       parts.push(`<details class="teach-fold" data-marker="${s.marker}"${open}>
         <summary class="fold">${title}</summary>
-        <div class="teach-body">${s.html}</div>
+        <div class="teach-body">${normalizeTeachingHtml(s.html)}</div>
       </details>`);
     }
     return `<section class="teach">
@@ -1914,8 +1984,8 @@ window.__PENDING__['algo'] = function(){ window.__RENDER_ALGO__(document.getElem
    逻辑与「拷打文档」源实现一致，仅把全局查询改为 root 作用域
    ============================================================ */
 window.__RENDER_KAODA__ = function (root, DATA) {
-  const PROJS = ['gcfeed', 'oncall'];
-  const NAMES = { gcfeed: 'GCFeed', oncall: 'OnCall Agent' };
+  const PROJS = ['gcfeed', 'yunzhi'];
+  const NAMES = { gcfeed: 'GCFeed', yunzhi: '云智商城' };
 
   const $ = (id) => root.querySelector('#' + id);
   const $$ = (sel) => Array.from(root.querySelectorAll(sel));
@@ -1940,6 +2010,9 @@ window.__RENDER_KAODA__ = function (root, DATA) {
 
   /* ---------------- 迷你 Markdown ---------------- */
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  /* 问题标题里的 `代码` 反引号：正文渲染成 <code>，侧栏去掉避免挤行 */
+  const titleInline = (s) => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+  const stripBt = (s) => String(s).replace(/`/g, '');
   function inline(s) {
     let t = esc(s);
     const codes = [];
@@ -1947,7 +2020,8 @@ window.__RENDER_KAODA__ = function (root, DATA) {
     t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     t = t.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
     t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    t = t.replace(/\u0000C(\d+)\u0000/g, (_, i) => `<code>${esc(codes[+i])}</code>`);
+    /* codes 来自已 esc 的字符串，不能再次 esc，否则显示 &amp;lt; */
+    t = t.replace(/\u0000C(\d+)\u0000/g, (_, i) => `<code>${codes[+i]}</code>`);
     return t;
   }
   function md(src) {
@@ -1966,7 +2040,18 @@ window.__RENDER_KAODA__ = function (root, DATA) {
       if (/^\|.*\|/.test(line) && i + 1 < L.length && /^\|[\s:|-]+\|/.test(L[i + 1])) {
         const rows = [];
         while (i < L.length && /^\|.*\|/.test(L[i])) { rows.push(L[i]); i++; }
-        const cells = (r) => r.replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+        /* 切单元格时跳过行内代码里的 |，否则 `a || b` 会被拆成两格 */
+        const cells = (r) => {
+          const s = r.replace(/^\|/, '').replace(/\|$/, '');
+          const out = []; let cur = ''; let inCode = false;
+          for (const ch of s) {
+            if (ch === '`') { inCode = !inCode; cur += ch; continue; }
+            if (ch === '|' && !inCode) { out.push(cur.trim()); cur = ''; continue; }
+            cur += ch;
+          }
+          out.push(cur.trim());
+          return out;
+        };
         let h = '<div class="tw"><table><thead><tr>' + cells(rows[0]).map((c) => `<th>${inline(c)}</th>`).join('') + '</tr></thead><tbody>';
         for (const r of rows.slice(2)) h += '<tr>' + cells(r).map((c) => `<td>${inline(c)}</td>`).join('') + '</tr>';
         out.push(h + '</tbody></table></div>');
@@ -2039,14 +2124,14 @@ window.__RENDER_KAODA__ = function (root, DATA) {
       parts.push(`<div class="cap ${isOpen ? 'open' : ''}" data-cap="${ci}">
         <button data-toggle="${ci}">
           <span class="idx">${String(ci + 1).padStart(2, '0')}</span>
-          <span class="txt">${esc(c.headline.slice(0, 60))}${c.headline.length > 60 ? '…' : ''}</span>
+          <span class="txt">${esc(stripBt(c.headline).slice(0, 60))}${c.headline.length > 60 ? '…' : ''}</span>
           <span class="cnt">${doneN}/${qs.length}</span>
         </button>
         <div class="qlist">`);
       for (const x of shown) {
         const isDone = state.doneQ.includes(x.id);
         parts.push(`<a href="#${x.id}" data-q="${x.id}" style="${isDone ? 'opacity:.5;text-decoration:line-through' : ''}">
-          <span class="qn">${x.id.replace(/^q/, 'Q')}</span><span>${esc(x.q.replace(/^Q\d+[:：]\s*/, '').slice(0, 42))}</span></a>`);
+          <span class="qn">${x.id.replace(/^q/, 'Q')}</span><span>${esc(stripBt(x.q.replace(/^Q\d+[:：]\s*/, '')).slice(0, 42))}</span></a>`);
       }
       parts.push(`</div></div>`);
     });
@@ -2128,7 +2213,7 @@ window.__RENDER_KAODA__ = function (root, DATA) {
     return `<details class="qa" id="${x.id}" data-qid="${x.id}">
       <summary>
         <span class="mk">${x.id.replace(/^q/, 'Q')}</span>
-        <span>${esc(x.q.replace(/^Q\d+[:：]\s*/, ''))}</span>
+        <span>${titleInline(x.q.replace(/^Q\d+[:：]\s*/, ''))}</span>
         <span class="arw">▸</span>
       </summary>
       <div class="body">${inner}
@@ -2231,6 +2316,9 @@ window.__RENDER_IV__ = function (root, DATA) {
   const $ = (id) => root.querySelector('#' + id);
   const $$ = (sel) => Array.from(root.querySelectorAll(sel));
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  /* Markdown 标题里常带 `代码` 反引号：正文渲染成 <code>，侧栏去掉反引号避免挤行。 */
+  const titleInline = (s) => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+  const stripBt = (s) => String(s).replace(/`/g, '');
 
   /* ---------------- 布局 ---------------- */
   root.innerHTML = `
@@ -2281,16 +2369,16 @@ window.__RENDER_IV__ = function (root, DATA) {
       html.push(`<div class="sec ${open ? 'open' : ''}" data-si="${si}">
         <button data-tog="${si}">
           <span class="caret">▶</span>
-          <span class="lbl">${esc(s.title)}</span>
+          <span class="lbl">${esc(stripBt(s.title))}</span>
           <span class="num">${s.questions.length}</span>
         </button>
         <div class="qs">`);
       if (s.ownNav) {
         const sid = s.questions[0].id;
-        html.push(`<a href="#${sid}" data-q="${sid}"><span class="k">§</span>${esc(s.title.slice(0, 30))}</a>`);
+        html.push(`<a href="#${sid}" data-q="${sid}"><span class="k">§</span>${esc(stripBt(s.title).slice(0, 30))}</a>`);
       } else {
         for (const x of hitQ) {
-          const short = x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, '').slice(0, 34);
+          const short = stripBt(x.title).replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, '').slice(0, 34);
           const kk = x.title.split(/[.\s]/)[0];
           html.push(`<a href="#${x.id}" data-q="${x.id}"><span class="k">${esc(kk)}</span>${esc(short)}</a>`);
         }
@@ -2311,14 +2399,15 @@ window.__RENDER_IV__ = function (root, DATA) {
       <span class="hint">按 <kbd>/</kbd> 搜索 · 点标题展开</span>
     </div>`;
 
+    const qTotal = doc.sections.reduce((n, s) => n + s.questions.filter((x) => !x.navOnly).length, 0);
     h += `<div class="doc-head">
       <span class="tag">${esc(doc.label)}</span>
       <h1>${esc(doc.title || doc.label)}</h1>
-      <div class="meta">${doc.sections.length} 个大节 · ${doc.sections.reduce((n, s) => n + s.questions.length, 0)} 道题</div>
+      <div class="meta">${doc.sections.length} 个大节 · ${qTotal} 道题</div>
     </div>`;
 
     doc.sections.forEach((s) => {
-      h += `<h2 class="sec-t" id="${s.id}">${esc(s.title)}</h2>`;
+      h += `<h2 class="sec-t" id="${s.id}">${titleInline(s.title)}</h2>`;
       if (s.ownNav) {
         h += `<div class="prose" id="${s.questions[0].id}">${s.html}</div>`;
         return;
@@ -2326,7 +2415,7 @@ window.__RENDER_IV__ = function (root, DATA) {
       h += `<div class="sec-desc">${s.questions.length} 道题</div>`;
       for (const x of s.questions) {
         h += `<details class="item" id="${x.id}">
-          <summary><span class="no">${esc(x.title.split(/[.\s]/)[0])}</span><span>${esc(x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, ''))}</span><span class="arw">▶</span></summary>
+          <summary><span class="no">${esc(x.title.split(/[.\s]/)[0])}</span><span>${titleInline(x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, ''))}</span><span class="arw">▶</span></summary>
           <div class="body">${x.html}</div>
         </details>`;
       }
@@ -2428,430 +2517,12 @@ window.__RENDER_IV__ = function (root, DATA) {
 
 (window.__PENDING__ = window.__PENDING__ || {});
 window.__PENDING__['iv'] = function(){ window.__RENDER_IV__(document.getElementById('rootIv'), window.__DATA_IV__); };
-})();
-</script>
-<script>
-(function(){
-/* ============================================================
-   板块三：面试速查
-   逻辑与「面试页面」源实现一致，仅把全局查询改为 root 作用域
-   ============================================================ */
-window.__RENDER_IV__ = function (root, DATA) {
-  const { docs, stat } = DATA;
-
-  const $ = (id) => root.querySelector('#' + id);
-  const $$ = (sel) => Array.from(root.querySelectorAll(sel));
-  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-  /* ---------------- 布局 ---------------- */
-  root.innerHTML = `
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <aside id="sb">
-      <div class="sb-head">
-        <div class="sb-title">${esc(DATA.title || '面试')}<em>${esc(DATA.titleEm || '速查')}</em></div>
-        <div class="sb-sub">${esc(DATA.subtitle || 'Scenario & Beyond')}</div>
-      </div>
-      <div class="tabs" id="tabs"></div>
-      <div class="search">
-        <input id="q" type="search" placeholder="搜索题目或内容…" autocomplete="off">
-      </div>
-      <nav class="nav" id="nav"></nav>
-    </aside>
-    <main id="main">
-      <div class="wrap" id="view"></div>
-    </main>`;
-
-  /* ---------------- 状态 ---------------- */
-  const LS = DATA.storeKey || 'interview-page-v1';
-  const load = () => { try { return JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) { return {}; } };
-  const st = load();
-  if (!stat.some((d) => d.key === st.doc)) st.doc = stat[0].key;
-  st.openSecs = st.openSecs || {};
-  let query = '';
-
-  const curDoc = () => docs.find((d) => d.key === st.doc);
-  const save = () => { try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} };
-
-  /* ---------------- 侧栏 ---------------- */
-  function renderTabs() {
-    $('tabs').innerHTML = stat.map((d) =>
-      `<button data-doc="${d.key}" class="${st.doc === d.key ? 'on' : ''}" title="${d.label} · ${d.questions} 题">${d.short}</button>`).join('');
-  }
-
-  function renderNav() {
-    const doc = curDoc();
-    const q = query.trim().toLowerCase();
-    const html = [];
-
-    doc.sections.forEach((s, si) => {
-      const hitQ = q
-        ? s.questions.filter((x) => (x.title + ' ' + x.sub.join(' ') + ' ' + s.html.replace(/<[^>]+>/g, ' ')).toLowerCase().includes(q))
-        : s.questions;
-      if (q && hitQ.length === 0) return;
-      const open = q ? true : (st.openSecs[doc.key + ':' + si] !== false);
-      html.push(`<div class="sec ${open ? 'open' : ''}" data-si="${si}">
-        <button data-tog="${si}">
-          <span class="caret">▶</span>
-          <span class="lbl">${esc(s.title)}</span>
-          <span class="num">${s.questions.length}</span>
-        </button>
-        <div class="qs">`);
-      if (s.ownNav) {
-        const sid = s.questions[0].id;
-        html.push(`<a href="#${sid}" data-q="${sid}"><span class="k">§</span>${esc(s.title.slice(0, 30))}</a>`);
-      } else {
-        for (const x of hitQ) {
-          const short = x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, '').slice(0, 34);
-          const kk = x.title.split(/[.\s]/)[0];
-          html.push(`<a href="#${x.id}" data-q="${x.id}"><span class="k">${esc(kk)}</span>${esc(short)}</a>`);
-        }
-      }
-      html.push(`</div></div>`);
-    });
-    $('nav').innerHTML = html.join('');
-  }
-
-  /* ---------------- 主区 ---------------- */
-  function renderView() {
-    const doc = curDoc();
-    const v = $('view');
-    let h = `<div class="tools">
-      <button data-act="expand">展开全部</button>
-      <button data-act="collapse">收起全部</button>
-      <span class="sp"></span>
-      <span class="hint">按 <kbd>/</kbd> 搜索 · 点标题展开</span>
-    </div>`;
-
-    h += `<div class="doc-head">
-      <span class="tag">${esc(doc.label)}</span>
-      <h1>${esc(doc.title || doc.label)}</h1>
-      <div class="meta">${doc.sections.length} 个大节 · ${doc.sections.reduce((n, s) => n + s.questions.length, 0)} 道题</div>
-    </div>`;
-
-    doc.sections.forEach((s) => {
-      h += `<h2 class="sec-t" id="${s.id}">${esc(s.title)}</h2>`;
-      if (s.ownNav) {
-        h += `<div class="prose" id="${s.questions[0].id}">${s.html}</div>`;
-        return;
-      }
-      h += `<div class="sec-desc">${s.questions.length} 道题</div>`;
-      for (const x of s.questions) {
-        h += `<details class="item" id="${x.id}">
-          <summary><span class="no">${esc(x.title.split(/[.\s]/)[0])}</span><span>${esc(x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, ''))}</span><span class="arw">▶</span></summary>
-          <div class="body">${x.html}</div>
-        </details>`;
-      }
-    });
-
-    v.innerHTML = h;
-    bindView();
-  }
-
-  function bindView() {
-    const v = $('view');
-    v.querySelectorAll('[data-act]').forEach((b) => {
-      b.onclick = () => {
-        const open = b.dataset.act === 'expand';
-        v.querySelectorAll('details.item').forEach((d) => { d.open = open; });
-      };
-    });
-    const hash = decodeURIComponent(location.hash.slice(1));
-    if (hash) {
-      const el = root.querySelector('#' + hash);
-      if (el && el.classList.contains('item')) {
-        el.open = true;
-        setTimeout(() => el.scrollIntoView({ block: 'start' }), 130);
-      }
-    }
-  }
-
-  /* ---------------- 事件 ---------------- */
-  $('tabs').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-doc]');
-    if (!b) return;
-    st.doc = b.dataset.doc; save();
-    renderTabs(); renderNav(); renderView();
-    $('main').scrollTop = 0;
-  });
-
-  $('nav').addEventListener('click', (e) => {
-    const tog = e.target.closest('[data-tog]');
-    if (tog) {
-      const si = +tog.dataset.tog;
-      const key = st.doc + ':' + si;
-      st.openSecs[key] = st.openSecs[key] === false ? true : false;
-      save();
-      const box = tog.closest('.sec');
-      box.classList.toggle('open', st.openSecs[key]);
-      return;
-    }
-    const a = e.target.closest('[data-q]');
-    if (a) {
-      $$('.qs a.cur').forEach((x) => x.classList.remove('cur'));
-      a.classList.add('cur');
-      $('sb').classList.remove('open');
-    }
-  });
-
-  $('q').addEventListener('input', (e) => { query = e.target.value; renderNav(); });
-  $('menuBtn').onclick = () => $('sb').classList.toggle('open');
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') $('sb').classList.remove('open');
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); $('q').focus(); }
-  });
-
-  /* 滚动时高亮当前题 */
-  const main = $('main');
-  let ticking = false;
-  main.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      ticking = false;
-      const items = Array.from(root.querySelectorAll('details.item'));
-      const top = main.getBoundingClientRect().top + 140;
-      let curId = null;
-      for (const it of items) {
-        if (it.getBoundingClientRect().top <= top) curId = it.id;
-        else break;
-      }
-      if (curId) {
-        $$('.qs a.cur').forEach((x) => x.classList.remove('cur'));
-        const link = root.querySelector(`.qs a[data-q="${curId}"]`);
-        if (link) {
-          link.classList.add('cur');
-          const box = link.closest('.sec');
-          if (box && !box.classList.contains('open')) {
-            box.classList.add('open');
-            const si = +box.dataset.si;
-            st.openSecs[st.doc + ':' + si] = true;
-          }
-        }
-      }
-    });
-  });
-
-  /* ---------------- 启动 ---------------- */
-  renderTabs();
-  renderNav();
-  renderView();
-};
-
-(window.__PENDING__ = window.__PENDING__ || {});
 window.__PENDING__['bagu'] = function(){ window.__RENDER_IV__(document.getElementById('rootBagu'), window.__DATA_BAGU__); };
-})();
-</script>
-<script>
-(function(){
-/* ============================================================
-   板块三：面试速查
-   逻辑与「面试页面」源实现一致，仅把全局查询改为 root 作用域
-   ============================================================ */
-window.__RENDER_IV__ = function (root, DATA) {
-  const { docs, stat } = DATA;
-
-  const $ = (id) => root.querySelector('#' + id);
-  const $$ = (sel) => Array.from(root.querySelectorAll(sel));
-  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-  /* ---------------- 布局 ---------------- */
-  root.innerHTML = `
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <aside id="sb">
-      <div class="sb-head">
-        <div class="sb-title">${esc(DATA.title || '面试')}<em>${esc(DATA.titleEm || '速查')}</em></div>
-        <div class="sb-sub">${esc(DATA.subtitle || 'Scenario & Beyond')}</div>
-      </div>
-      <div class="tabs" id="tabs"></div>
-      <div class="search">
-        <input id="q" type="search" placeholder="搜索题目或内容…" autocomplete="off">
-      </div>
-      <nav class="nav" id="nav"></nav>
-    </aside>
-    <main id="main">
-      <div class="wrap" id="view"></div>
-    </main>`;
-
-  /* ---------------- 状态 ---------------- */
-  const LS = DATA.storeKey || 'interview-page-v1';
-  const load = () => { try { return JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) { return {}; } };
-  const st = load();
-  if (!stat.some((d) => d.key === st.doc)) st.doc = stat[0].key;
-  st.openSecs = st.openSecs || {};
-  let query = '';
-
-  const curDoc = () => docs.find((d) => d.key === st.doc);
-  const save = () => { try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} };
-
-  /* ---------------- 侧栏 ---------------- */
-  function renderTabs() {
-    $('tabs').innerHTML = stat.map((d) =>
-      `<button data-doc="${d.key}" class="${st.doc === d.key ? 'on' : ''}" title="${d.label} · ${d.questions} 题">${d.short}</button>`).join('');
-  }
-
-  function renderNav() {
-    const doc = curDoc();
-    const q = query.trim().toLowerCase();
-    const html = [];
-
-    doc.sections.forEach((s, si) => {
-      const hitQ = q
-        ? s.questions.filter((x) => (x.title + ' ' + x.sub.join(' ') + ' ' + s.html.replace(/<[^>]+>/g, ' ')).toLowerCase().includes(q))
-        : s.questions;
-      if (q && hitQ.length === 0) return;
-      const open = q ? true : (st.openSecs[doc.key + ':' + si] !== false);
-      html.push(`<div class="sec ${open ? 'open' : ''}" data-si="${si}">
-        <button data-tog="${si}">
-          <span class="caret">▶</span>
-          <span class="lbl">${esc(s.title)}</span>
-          <span class="num">${s.questions.length}</span>
-        </button>
-        <div class="qs">`);
-      if (s.ownNav) {
-        const sid = s.questions[0].id;
-        html.push(`<a href="#${sid}" data-q="${sid}"><span class="k">§</span>${esc(s.title.slice(0, 30))}</a>`);
-      } else {
-        for (const x of hitQ) {
-          const short = x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, '').slice(0, 34);
-          const kk = x.title.split(/[.\s]/)[0];
-          html.push(`<a href="#${x.id}" data-q="${x.id}"><span class="k">${esc(kk)}</span>${esc(short)}</a>`);
-        }
-      }
-      html.push(`</div></div>`);
-    });
-    $('nav').innerHTML = html.join('');
-  }
-
-  /* ---------------- 主区 ---------------- */
-  function renderView() {
-    const doc = curDoc();
-    const v = $('view');
-    let h = `<div class="tools">
-      <button data-act="expand">展开全部</button>
-      <button data-act="collapse">收起全部</button>
-      <span class="sp"></span>
-      <span class="hint">按 <kbd>/</kbd> 搜索 · 点标题展开</span>
-    </div>`;
-
-    h += `<div class="doc-head">
-      <span class="tag">${esc(doc.label)}</span>
-      <h1>${esc(doc.title || doc.label)}</h1>
-      <div class="meta">${doc.sections.length} 个大节 · ${doc.sections.reduce((n, s) => n + s.questions.length, 0)} 道题</div>
-    </div>`;
-
-    doc.sections.forEach((s) => {
-      h += `<h2 class="sec-t" id="${s.id}">${esc(s.title)}</h2>`;
-      if (s.ownNav) {
-        h += `<div class="prose" id="${s.questions[0].id}">${s.html}</div>`;
-        return;
-      }
-      h += `<div class="sec-desc">${s.questions.length} 道题</div>`;
-      for (const x of s.questions) {
-        h += `<details class="item" id="${x.id}">
-          <summary><span class="no">${esc(x.title.split(/[.\s]/)[0])}</span><span>${esc(x.title.replace(/^[A-Z]?\d+(\.\d+)?[.\s]*/, ''))}</span><span class="arw">▶</span></summary>
-          <div class="body">${x.html}</div>
-        </details>`;
-      }
-    });
-
-    v.innerHTML = h;
-    bindView();
-  }
-
-  function bindView() {
-    const v = $('view');
-    v.querySelectorAll('[data-act]').forEach((b) => {
-      b.onclick = () => {
-        const open = b.dataset.act === 'expand';
-        v.querySelectorAll('details.item').forEach((d) => { d.open = open; });
-      };
-    });
-    const hash = decodeURIComponent(location.hash.slice(1));
-    if (hash) {
-      const el = root.querySelector('#' + hash);
-      if (el && el.classList.contains('item')) {
-        el.open = true;
-        setTimeout(() => el.scrollIntoView({ block: 'start' }), 130);
-      }
-    }
-  }
-
-  /* ---------------- 事件 ---------------- */
-  $('tabs').addEventListener('click', (e) => {
-    const b = e.target.closest('[data-doc]');
-    if (!b) return;
-    st.doc = b.dataset.doc; save();
-    renderTabs(); renderNav(); renderView();
-    $('main').scrollTop = 0;
-  });
-
-  $('nav').addEventListener('click', (e) => {
-    const tog = e.target.closest('[data-tog]');
-    if (tog) {
-      const si = +tog.dataset.tog;
-      const key = st.doc + ':' + si;
-      st.openSecs[key] = st.openSecs[key] === false ? true : false;
-      save();
-      const box = tog.closest('.sec');
-      box.classList.toggle('open', st.openSecs[key]);
-      return;
-    }
-    const a = e.target.closest('[data-q]');
-    if (a) {
-      $$('.qs a.cur').forEach((x) => x.classList.remove('cur'));
-      a.classList.add('cur');
-      $('sb').classList.remove('open');
-    }
-  });
-
-  $('q').addEventListener('input', (e) => { query = e.target.value; renderNav(); });
-  $('menuBtn').onclick = () => $('sb').classList.toggle('open');
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') $('sb').classList.remove('open');
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); $('q').focus(); }
-  });
-
-  /* 滚动时高亮当前题 */
-  const main = $('main');
-  let ticking = false;
-  main.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      ticking = false;
-      const items = Array.from(root.querySelectorAll('details.item'));
-      const top = main.getBoundingClientRect().top + 140;
-      let curId = null;
-      for (const it of items) {
-        if (it.getBoundingClientRect().top <= top) curId = it.id;
-        else break;
-      }
-      if (curId) {
-        $$('.qs a.cur').forEach((x) => x.classList.remove('cur'));
-        const link = root.querySelector(`.qs a[data-q="${curId}"]`);
-        if (link) {
-          link.classList.add('cur');
-          const box = link.closest('.sec');
-          if (box && !box.classList.contains('open')) {
-            box.classList.add('open');
-            const si = +box.dataset.si;
-            st.openSecs[st.doc + ':' + si] = true;
-          }
-        }
-      }
-    });
-  });
-
-  /* ---------------- 启动 ---------------- */
-  renderTabs();
-  renderNav();
-  renderView();
-};
-
-(window.__PENDING__ = window.__PENDING__ || {});
 window.__PENDING__['shousi'] = function(){ window.__RENDER_IV__(document.getElementById('rootShousi'), window.__DATA_SHOUSI__); };
 })();
 </script>
+
+
 
 <script>
 /* ============================================================
@@ -2927,11 +2598,43 @@ window.__PENDING__['shousi'] = function(){ window.__RENDER_IV__(document.getElem
       const pane = document.getElementById('pane-' + s);
       if (pane) pane.hidden = (s !== sec);
     }
+    closeDrawer();
     ensure(sec);
     /* 通知各板块「自己被激活了」——用于懒渲染或重算尺寸 */
     window.dispatchEvent(new CustomEvent('secchange', { detail: { sec } }));
     if (remember !== false) { try { localStorage.setItem(KEY, sec); } catch (e) {} }
   }
+
+  /* ---------------- 移动端抽屉：遮罩 / 滚动锁 / 焦点 ----------------
+     各板块渲染器自己维护 #sb.open，这里只做外壳级联，不改渲染器。 */
+  const scrim = document.getElementById('scrim');
+  const activePane = () => document.querySelector('.pane:not([hidden])');
+  const activeSb = () => { const p = activePane(); return p ? p.querySelector('#sb') : null; };
+
+  function syncDrawer() {
+    const sb = activeSb();
+    const open = !!(sb && sb.classList.contains('open'));
+    document.body.classList.toggle('drawer-open', open);
+    const pane = activePane();
+    const btn = pane && pane.querySelector('.menu-btn');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open && sb) {
+      const input = sb.querySelector('input');
+      if (input) setTimeout(() => input.focus(), 40);
+    }
+  }
+
+  function closeDrawer() {
+    const sb = activeSb();
+    if (sb) sb.classList.remove('open');
+    document.body.classList.remove('drawer-open');
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.menu-btn')) setTimeout(syncDrawer, 0);
+    if (e.target === scrim) closeDrawer();
+  }, true);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
 
   document.getElementById('rail').addEventListener('click', (e) => {
     const b = e.target.closest('[data-go]');
