@@ -2638,8 +2638,11 @@ window.__PENDING__['shousi'] = function(){ window.__RENDER_IV__(document.getElem
     document.body.classList.remove('drawer-open');
   }
 
+  /* 任何点击后都同步一次抽屉状态：
+     各板块渲染器点导航项时会自己 remove('open')，不会通知外壳，
+     不同步的话 body.drawer-open 会残留 —— 遮罩不消失、正文锁死滚动。 */
   document.addEventListener('click', (e) => {
-    if (e.target.closest('.menu-btn')) setTimeout(syncDrawer, 0);
+    setTimeout(syncDrawer, 0);
     if (e.target === scrim) closeDrawer();
   }, true);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
