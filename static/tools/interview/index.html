@@ -184,9 +184,11 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
   body[data-sec="bagu"]   .rail-btn[data-go="bagu"]   .rn,
   body[data-sec="shousi"] .rail-btn[data-go="shousi"] .rn{color:#fff;font-weight:700}
 
-  /* 抽屉层级：scrim(150) < 板块侧栏(160) < 菜单按钮(170) */
-  .pane aside{z-index:160}
-  .pane .menu-btn{z-index:170;top:calc(12px + env(safe-area-inset-top,0px))}
+  /* 抽屉层级：scrim(150) < 板块侧栏(170) < 菜单按钮(180)
+     各板块 CSS 里 aside/menu-btn 自带 z-index（50/60），同特异性下会覆盖这两条，
+     所以这里把 #stage 带上提高特异性，别再让遮罩盖住抽屉。 */
+  #stage .pane aside{z-index:170}
+  #stage .pane .menu-btn{z-index:180;top:calc(12px + env(safe-area-inset-top,0px))}
 
   /* 内容区：占满宽度，底部让出标签栏，顶部让出安全区 */
   #stage{inset:env(safe-area-inset-top,0px) 0 calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px)) 0}
@@ -1538,8 +1540,6 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
   <div class="rail-foot">5 个板块<br>离线可用</div>
 </nav>
 
-<div id="scrim"></div>
-
 <div id="stage">
 
   <!-- ==================== 板块一：算法题解 ==================== -->
@@ -1566,6 +1566,10 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
   <div class="pane" id="pane-shousi" hidden>
     <div class="root" data-sec="shousi" id="rootShousi"><div class="lz">加载中…</div></div>
   </div>
+
+  <!-- 遮罩放在 #stage 内部：fixed 的 #stage 自成层叠上下文，
+       放外面会盖住抽屉，导致抽屉看得见却点不动。 -->
+  <div id="scrim"></div>
 
 </div>
 
@@ -2619,8 +2623,12 @@ window.__PENDING__['shousi'] = function(){ window.__RENDER_IV__(document.getElem
     const btn = pane && pane.querySelector('.menu-btn');
     if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open && sb) {
-      const input = sb.querySelector('input');
-      if (input) setTimeout(() => input.focus(), 40);
+      /* 桌面端自动聚焦搜索框；手机端不聚焦 —— 一聚焦就弹软键盘，
+         抽屉被顶掉、正文被遮，页面看起来像卡死。 */
+      if (window.innerWidth >= 900) {
+        const input = sb.querySelector('input');
+        if (input) setTimeout(() => { try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); } }, 40);
+      }
     }
   }
 
