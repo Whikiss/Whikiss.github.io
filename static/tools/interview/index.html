@@ -1574,7 +1574,7 @@ body[data-sec="iv"]    {--rail-accent:#6a9fd8}
 </div>
 
 <script id="__STAT__">
-window.__STAT__ = {"algo":124,"kaoda":80,"iv":114,"bagu":299,"shousi":40};
+window.__STAT__ = {"algo":124,"kaoda":80,"iv":114,"bagu":297,"shousi":40};
 window.__LAZY__ = true;
 /* 题量统计（外壳标签用） */
 </script>
@@ -1988,8 +1988,8 @@ window.__PENDING__['algo'] = function(){ window.__RENDER_ALGO__(document.getElem
    逻辑与「拷打文档」源实现一致，仅把全局查询改为 root 作用域
    ============================================================ */
 window.__RENDER_KAODA__ = function (root, DATA) {
-  const PROJS = ['gcfeed', 'yunzhi'];
-  const NAMES = { gcfeed: 'GCFeed', yunzhi: '云智商城' };
+  const PROJS = ['dovideo', 'yunzhi'];
+  const NAMES = { dovideo: 'DoVideoAI', yunzhi: '云智商城' };
 
   const $ = (id) => root.querySelector('#' + id);
   const $$ = (sel) => Array.from(root.querySelectorAll(sel));
@@ -2091,7 +2091,7 @@ window.__RENDER_KAODA__ = function (root, DATA) {
   let state = loadLS();
   state.doneQ = state.doneQ || [];
   const saveLS = () => { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {} };
-  if (!PROJS.includes(state.proj)) state.proj = 'gcfeed';
+  if (!PROJS.includes(state.proj)) state.proj = 'dovideo';
   state.openCaps = state.openCaps || [0];
 
   let query = '';
